@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+      body {
+          height: 130vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 5%;
+          padding: 0;
+          background-color: #2B2F42 ;
+          color: white;
+          gap: 10px;
+          font-family: "Poppins", sans-serif;
+      }
+
+      .containera {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        /* margin: 10px; */
+      }
+
+      .containerb {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2%;
+        margin: 10px;
+      }
+
+
+
+      /* this is header  */
+
+      .container0 {
+        background-color: #2B2F42;
+        width: 80vw;
+        height: 30vh;
+        border-radius: 15px;
+        padding: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        
+      }
+
+  
+
+
+
+      /* header ends  */
+
+      /* this is the container for the cards  */
+      .container1 {
+        background-color: #2B2F42 ;
+        display: flex;
+        flex-direction: column;
+        /* margin: auto; */
+        /* padding: 1%; */
+        width: 60vw;
+        height: 80vh;
+        border-radius: 15px;
+      }
+
+      
+      .container2 {
+        background-color: #2B2F42 ;
+        width: 20vw;
+        height: 80vh;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1%;
+        }
+        
+        /* container 1 css */
+       
+        
+        .scores {
+          background-color: #3A3E54 ;
+          width: 100%;
+          height: 60%;
+          margin-bottom: 10px;
+          border-radius: 15px;
+          /* padding: 10px; */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-evenly;
+          text-size-adjust: auto;
+          text-wrap: auto;
+          /* gap: 10px; */
+          }
+
+          .score1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: wheat 1px solid;
+            border-radius: 10px; */
+            padding: 10px;
+          }
+
+          .score2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: wheat 1px solid; */
+            /* border-radius: 10px; */
+            padding: 10px;
+          }
+
+          .score3 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: wheat 1px solid;
+            border-radius: 10px; */
+            padding: 10px;
+          }
+
+          .scores h5 {
+            font-size: 2.20 vw;
+          }
+          
+          .scores p {
+            font-size: 2vh;
+          }
+
+      .graph1 {
+        background-color: #3A3E54;
+        width: 100%;
+        height: 40%;
+        /* margin: 10px; */
+        border-radius: 15px;
+      }
+
+      /* container 0 css */
+
+      .cardstop {
+        background-color: #2B2F42;
+        display: flex;
+        gap: 1%;
+        width: 97%;
+        height: 33%;
+        margin: 10px;
+        padding: 1%;
+        border-radius: 15px;
+      }
+
+      .scard1 {
+        background-color: #3A3E54 ;
+        width: 33%;
+        height: 100%;
+        border-radius: 15px;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .scard2 {
+        background-color: #3A3E54 ;
+        width: 33%;
+        height: 100%;
+        border-radius: 15px;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .scard3 {
+        background-color: #3A3E54 ;
+        width: 33%;
+        height: 100%;
+        border-radius: 15px;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cardstop h4 {
+          font-size: 2.20vw;
+        }
+
+        .cardstop p {
+          font-size: 2.20vw;
+        }
+        .cardsmid {
+          background-color: #2B2F42  ;
+          width: 97%;
+          height: 66%;
+          gap: 1%;
+          margin: 10px;
+          margin-right: 10px;
+          border-radius: 15px;
+          padding-left: 5px;
+        }
+
+
+      
+
+
+      @media (max-width: 1024px) {
+        .container1 {
+          width: 82vw;
+          height: 80vh; /* 40vh */
+        }
+        .containerb {
+          flex-direction: column;
+          /* margin: 0; */
+        }
+        .container2 {
+          width: 80vw;
+          height: 40vh;
+        }
+
+        .scores {
+          flex-direction: row;
+        }
+
+        .cardstop h4 {
+          font-size: 3vw;
+        }
+
+        .cardstop p {
+          font-size: 2.5vw;
+        }
+
+        
+       
+      }
+
+      @media (max-width: 768px) {
+        .container1 {
+          width: 82vw;
+          height: 92vw; /* 40vh */
+        }
+        .scores h5 {
+          font-size: 3vw;
+        }
+        .scores p {
+          text-align: center;
+          font-size: 2.5vw;
+        }
+        .container2 {
+          width: 80vw;
+          height: 40vw;
+        }
+
+        .cardsmid {
+         height: 60%;
+        }
+      }
+
+      .cardlow {
+        background-color: #0f194b ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1%;
+        width: 98%;
+        height: 33%;
+        margin: 10px;
+        padding: 1%;
+        border-radius: 15px;
+      }
+
+      .mcard1 {
+        background-color: #3A3E54 ;
+        width: 99%;
+        height: 100%;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 5px;
+      }
+
+      .mcard1 > div {
+            width: 90%;
+            height: 90%;
+        }
+
+    .graph1 {
+        background-color: #3A3E54 ;
+        width: 99%;
+        height: 50%;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .graph1 > div {
+            width: 90%;
+            height: 80%;
+        }
+
+
+        /* .plotly-container {
+          width: 100%;
+          height: 100%;
+          border-radius: 15px; 
+        } */
+
+      /* .lcard1 {
+        background-color: #354bc6 ;
+        width: 60%;
+        height: 100%;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lcard1 > div {
+            width: 90%;
+            height: 90%;
+        }
+
+      .lcard2 {
+        background-color: #3A3E54 ;
+        width: 40%;
+        height: 100%;
+        border-radius: 15px;
+      } */
+
+    </style>
+  </head>
+  <body>
+   
+
+    <div class="containera">
+
+      <div class="container0">
+        <h2 class="name">Hi, {{request.user}}</h2>
+        <br>
+        <br>
+        <br>
+        <h2>Performance Overview of {{batch}}</h2>
+         <a href="{% url 'logout' %}" class="btn btn-primary">logout</a>
+      </div>
+
+    </div>
+      
+    <br>
+
+
+    <div class="containerb">
+
+      <div class="container1">
+        <div class="cardstop">
+          <div class="scard1">
+            <h4>Session Attendance</h4>
+            <br>
+            <p>559/600</p>
+          </div>
+          <div class="scard2">
+            <h4>Public <br> Speaking</h4>
+            <br>
+            <p>3/4</p>
+          </div>
+          <div class="scard3">
+            <h4>Total Attendance</h4>
+            <br>
+            <p>{{total}}/600</p>
+          </div>
+        </div>
+        <div class="cardsmid">
+          <div class="mcard1">
+              {{ graph_html|safe }}
+            <!-- <div id="plotly-div"></div>
+            <script type="text/javascript">
+                var plotly_data = {{ graph_json| safe }};
+                Plotly.react('plotly-div', plotly_data.data, plotly_data.layout);
+            </script>  -->
+          </div>
+        </div>
+        <!-- <div class="cardlow">
+          <div class="lcard1">
+          </div>
+          <div class="lcard2"></div>
+        </div> -->
+      </div>
+
+
+      <div class="container2">
+        <div class="scores">
+      
+          <div class="score1">
+            <p>Audio Task Status</p>
+            <h5>8 Submitted</h5>
+          </div>
+          <div class="score2">
+            <p>Number of Students</p>
+            <h5>{{student_amount}}</h5>
+          </div>
+          <div class="score3">
+            <p>Session Participation</p>
+            <h5>Good</h5>
+          </div>
+      
+        </div>
+
+        <div class="graph1">
+            {{ graph_html1|safe }}
+          <!-- <div id="plotly-div"></div>
+            <script type="text/javascript">
+                var plotly_data = {{ graph_json| safe }};
+                Plotly.react('plotly-div', plotly_data.data, plotly_data.layout);
+            </script> -->
+        </div>
+
+      </div>
+
+    </div>
+      
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
+

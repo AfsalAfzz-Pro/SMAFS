@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Forms</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            background-color: #2B2F42;;
+            color: rgb(0, 0, 0);
+            font-family: "Poppins", sans-serif;
+        }
+        .card {
+            width: 30vh;  /* was 50 */
+            padding: 30px;
+            /* padding-top: 30px; */
+            background-color: #3A3E54;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 80vw;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="containe d-flex justify-content-center gap-4">
+
+        <div class="card">
+            <div class="card-body">
+                <!-- <h5 class="card-title text-center">What would you like to do today?</h5> -->
+                <br>
+                <div class="d-flex justify-content-center gap-3 flex-column align-items-center">
+                    <!-- <a href="{% url 'dailyreport1' %}" class="btn btn-primary">Daily Audio Report</a> -->
+                    <a href="{% url 'batchchoice' %}" class="btn btn-primary">Batchwise Audio Report</a>
+                </div>
+                
+            </div> 
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <!-- <h5 class="card-title text-center">What would you like to do today?</h5> -->
+                <br>
+                <div class="d-flex justify-content-center gap-3 flex-column">
+                    <a href="{% url 'dailyreport1' %}" class="btn btn-primary">Daily Audio Report</a>
+                    <a href="{% url 'dailyreport2' %}" class="btn btn-primary">Batchwise Session Report</a>
+                </div>
+                
+            </div> 
+        </div>
+
+    </div>
+
+    <br><br>
+    <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
+</body>
+</html>
