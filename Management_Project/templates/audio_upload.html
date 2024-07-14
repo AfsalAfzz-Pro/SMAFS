@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+          height: 100vh;
+          padding: 0;
+          background-color: #2B2F42;
+          color: white;
+          font-family: "Poppins", sans-serif;
+        }
+
+        .navbar {
+            background-color: #3A3E54;
+            padding: 10px 20px;
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+        }
+
+        .big-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: 80%;
+        }
+
+        .audio-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30vw;
+            height: 30vh;
+            background-color: #3A3E54;
+            border-radius: 15px;
+        }
+
+        .audio-card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-buttons">
+              <a href="{% url 'studentdashboard' %}" class="btn btn-success">View Summary Reports</a>
+              <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="big-container">
+        <h3 class="card-title">Upload Your Audio</h3>
+        <br>
+        <div class="audio-card">
+            <div class="audio-card-body" enctype="multipart/form-data">
+                <form method="POST" action="" class="d-flex flex-column">
+                    {% csrf_token %}
+                    <input type="file" id="file-input" name="audio_file" class="btn btn-secondary">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+    <br>
+    <br>
+    <br>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+</body>
+</html>

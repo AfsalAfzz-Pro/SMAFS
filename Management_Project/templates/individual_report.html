@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+      body {
+          height: 130vh;
+          /* display: flex; */
+          /* flex-direction: column; */
+          /* align-items: center; */
+          /* justify-content: center; */
+          /* margin: 5%; */
+          padding: 0;
+          background-color: #2B2F42 ;
+          color: white;
+          /* gap: 10px; */
+          font-family: "Poppins", sans-serif;
+      }
+
+      .big-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .containera {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        /* margin: 10px; */
+      }
+
+      .containerb {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2%;
+        margin: 10px;
+      }
+
+
+
+      /* this is header  */
+
+      .container0 {
+        background-color: #2B2F42;
+        width: 80vw;
+        height: 10vh;
+        border-radius: 15px;
+        padding: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        
+      }
+
+  
+
+
+
+      /* header ends  */
+
+      /* this is the container for the cards  */
+      .container1 {
+        background-color: #2B2F42 ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* margin: auto; */
+        /* padding: 1%; */
+        width: 20vw;
+        height: 50vw;
+        border-radius: 15px;
+      }
+
+      
+      .container2 {
+        background-color: #2B2F42;
+        width: 80vw; /* 60vw */
+        height: 50vw;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1%;
+        gap: 1%;
+        }
+        
+        /* container 1 css */
+
+
+        .container3 {
+            background-color: #2B2F42 ;
+            width: 80vw;
+            height: 30vh;
+            border-radius: 15px;
+        }
+       
+        .text {
+            background-color: #3A3E54 ;
+          width: 98%;
+          height: 98%;
+          border-radius: 15px;
+          margin: 10px;
+        }
+
+
+        .scores {
+          background-color: #3A3E54 ;
+          width: 100%;
+          height: 100%;
+          /* margin-bottom: 10px; */
+          border-radius: 15px;
+          /* padding: 10px; */
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: start;
+          text-size-adjust: auto;
+          text-wrap: auto;
+          padding: 4%;
+          /* gap: 10px; */
+          }
+
+          .heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .score1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: wheat 1px solid;
+            border-radius: 10px; */
+            padding: 10px;
+          }
+
+          .score2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: wheat 1px solid; */
+            /* border-radius: 10px; */
+            padding: 10px;
+          }
+
+          .score3 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: wheat 1px solid;
+            border-radius: 10px; */
+            padding: 10px;
+          }
+
+          .scores h5 {
+            font-size: 2.20 vw;
+          }
+          
+          .scores p {
+            font-size: 2vh;
+          }
+
+      .graph1 {
+        background-color: #3A3E54;
+        width: 100%;
+        height: 40%;
+        /* margin: 10px; */
+        border-radius: 15px;
+      }
+
+      /* container 0 css */
+
+      .cardstop {
+        background-color: #2B2F42;
+        display: flex;
+        gap: 1%;
+        width: 97%;
+        height: 50%;
+        margin: 10px;
+        padding: 1%;
+        border-radius: 15px;
+      }
+
+      .scard1 {
+        background-color: #3A3E54 ;
+        width: 98%;
+        height: 98%;
+        border-radius: 15px;
+        padding: 7px 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 10px;
+      }
+
+      .scard2 {
+        background-color: #3A3E54 ;
+        width: 33%;
+        height: 100%;
+        border-radius: 15px;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .scard3 {
+        background-color: #3A3E54 ;
+        width: 33%;
+        height: 100%;
+        border-radius: 15px;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cardstop h4 {
+          font-size: 2.20vw;
+        }
+
+        .cardstop p {
+          font-size: 2.20vw;
+        }
+        .cardsmid {
+          background-color: #2B2F42 ;
+          width: 97%;
+          height: 36%;
+          gap: 1%;
+          margin: 10px;
+          margin-right: 10px;
+          border-radius: 15px;
+          padding-left: 5px;
+        }
+
+
+      
+
+
+      @media (max-width: 1024px) {
+        body {
+            min-height: 200vh;
+        }
+        .container1 {
+          width: 80vw;
+          height: 40vh; /* 40vh */
+        }
+        .containerb {
+          flex-direction: column;
+          /* margin: 0; */
+        }
+        .container2 {
+          width: 80vw;
+          height: 80vh;
+          gap: 7%;
+        }
+
+        .scores {
+          flex-direction: row;
+        }
+
+        .cardstop h4 {
+          font-size: 3vw;
+        }
+
+        .cardstop p {
+          font-size: 2.5vw;
+        }
+
+        
+       
+      }
+
+      @media (max-width: 768px) {
+        body {
+            min-height: 140vh;
+        }
+        .container1 {
+          width: 82vw;
+          height: 40vh; /* 40vh */
+        }
+       
+        .scores h5 {
+          font-size: 3vw;
+        }
+        .scores p {
+          text-align: center;
+          font-size: 2.5vw;
+        }
+        .container2 {
+          width: 81vw; 
+          height: 60vh;
+          gap: 7%;
+        }
+
+        .cardsmid {
+         height: 60%;
+        }
+      }
+
+      .cardlow {
+        background-color: #0f194b ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1%;
+        width: 98%;
+        height: 33%;
+        margin: 10px;
+        padding: 1%;
+        border-radius: 15px;
+      }
+
+      .mcard1 {
+        background-color: #1ea384 ;
+        width: 99%;
+        height: 100%;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 5px;
+      }
+
+      .mcard1 > div {
+            width: 90%;
+            height: 90%;
+        }
+
+    .graph1 {
+        background-color: #3A3E54 ;
+        width: 99%;
+        height: 50%;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .graph1 > div {
+            width: 90%;
+            height: 80%;
+        }
+
+
+      
+      .navbar {
+    background-color: #3A3E54;
+    padding: 10px 20px;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.logo {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-buttons {
+    margin: 5px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.button1 {
+  padding: 12.5px 30px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #0d98f5;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.button1:hover {
+  background-color: #6a31db;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.05);
+}
+
+.button1:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+.content {
+  overflow: auto;
+}
+
+    </style>
+  </head>
+  <body>
+   
+    <nav class="navbar">
+      <h4>Individual Reports</h4>
+      <div class="navbar-container">
+          <div class="navbar-buttons">
+            <a href="{% url 'studentdashboard' %}" class="btn btn-success">View Summary Reports</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
+          </div>
+      </div>
+  </nav>
+
+  <br>
+  <br>
+  <br>
+
+<div class="big-container">
+
+  <div class="containera">
+
+    <div class="container0">
+      <h2 class="name">Hi, {{ request.user }}</h2>
+       <!-- <a href="{% url 'logout' %}" class="btn btn-primary">logout</a> -->
+    </div>
+
+  </div>
+      
+  
+
+
+    <div class="containerb">
+
+      <!-- <div class="container1">
+
+      
+          <div class="scard1">
+            <button class="button1" type="button">Day 1</button>
+            <button class="button1" type="button">Day 2</button>
+            <button class="button1" type="button">Day 3</button>
+            <button class="button1" type="button">Day 4</button>
+            <button class="button1" type="button">Day 5</button>
+            <button class="button1" type="button">Day 6</button>
+            <button class="button1" type="button">Day 7</button>
+          </div>
+      
+      </div> -->
+
+
+      <div class="container2">
+
+
+
+        <div class="scores">
+          <div class="d-flex justify-content-center align-items-center">
+            <h1>Report</h1>
+          </div>
+          
+
+          <div class="content">
+            <p>
+              <h5 style="color: #a188d3;">Filler Words: <span style="color: white;">{{ filler_count }}</span></h5>
+
+              {% for word in filler_words %}
+
+             <li>{{ word }}</li> 
+              
+              {% endfor %}
+
+              <br>
+              <h5 style="color: #a188d3;">Long Pauses: {{ pause_count}}</h5>
+
+              {% for pause in pauses %}
+
+              <li>{{ pause }}</li>
+
+              {% endfor %}
+
+              <br>
+              <h5 style="color: #a188d3;">Coherence:</h5>
+
+              {% for coherence in coherences %}
+
+              <li>{{ coherence }}</li>
+
+              {% endfor %}
+            <br>
+            <h5 style="color: #a188d3;">Grammar and Syntax:</h5>
+
+              {% for grammar in grammars %}
+
+            <li>{{ grammar }}</li>
+
+              {% endfor %}
+            
+            <br>
+            <h5 style="color: #a188d3;">Suggestions for Improvement:</h5>
+
+              {% for suggestion in suggestions %}
+
+              <li>{{ suggestion }}</li>
+
+              {% endfor %}  
+          
+          </p>
+
+          </div>
+
+            
+        </div>
+      </div>
+
+  
+        <!-- <div class="container3">
+            <div class="text">
+                fhdfhh
+            </div>
+        </div> -->
+    
+      
+
+    </div>
+
+    <!-- <div class="containerc">
+        <div class="container3">
+            <div class="text">
+                fhdfhh
+            </div>
+        </div>
+    </div> -->
+      
+
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
+

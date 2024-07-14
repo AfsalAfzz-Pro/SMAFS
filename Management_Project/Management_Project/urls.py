@@ -30,7 +30,10 @@ urlpatterns = [
     path('reports/', views.ReportChoice, name = 'adminreport'),
     path('report1/', views.DailyAudio, name = 'dailyreport1'),
     path('report2/', views.DailySession, name = 'dailyreport2'),
-    path('batches/', views.BatchChoice, name = 'batchchoice')
+    path('batches/', views.BatchChoice, name = 'batchchoice'),
+    path('studentdashboard/', views.StudentDashboard, name = 'studentdashboard'),
+    path('individualreport/', views.IndividualReport, name = 'individualreport'),
+    # path('audio_upload/', views.AudioUpload, name = 'audio_upload')
 
 
 

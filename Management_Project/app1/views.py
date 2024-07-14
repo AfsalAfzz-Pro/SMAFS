@@ -2,6 +2,7 @@
 
 from django.shortcuts import render
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -50,47 +51,10 @@ def HomePage(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
             return redirect('adminreport')
-        # else:
-            markets = ['Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4', 'Quarter 5']
-            market_shares = [7, 4, 5,7, 4]
-            
-            # fig = go.Figure(data=[go.Pie(labels=markets, values=market_shares)])
-            # fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=15)
-            # fig.update_layout(
-            #     title='Market Share Distribution',
-            #     width=370,  # specify the width here
-            #     height=400  # specify the height here
-            # )
-
-            attendance = [15, 80, 5 ]
-            # attendance = {'Authorised': 15, 'Unauthorised': 80, 'Absent': 5}
-
-            # Create the bar plot
-            fig = go.Figure(data=[go.Bar(x=markets, y=market_shares)])
-
-            # Create the pie chart
-            fig1 = go.Figure(data=go.Pie(labels=['Unauthorised','Authorised', 'Absent'], values=attendance))
-
-            # Update the layout
-            fig.update_layout(xaxis_title='Weeks', yaxis_title='Attendance', plot_bgcolor='#3A3E54', paper_bgcolor='#3A3E54', font_color='#FFFFFF', autosize=True, margin=dict(l=40, r=40, t=40, b=40))
-            fig1.update_layout(plot_bgcolor='#3A3E54', paper_bgcolor='#3A3E54', font_color='#FFFFFF', autosize=True, margin=dict(l=20, r=20, t=20, b=20))
-            print("Starting....")
-            
-            # graph_json = pio.to_json(fig)
-
-            # Convert the figure to HTML with responsive configuration
-            graph_html = pio.to_html(fig, full_html=False, config={'responsive': True})
-
-            graph_html1 = pio.to_html(fig1, full_html=False, config={'responsive': True})
-
-            return render(request, 'home.html', {'graph_html': graph_html, 'pie':graph_html1})
-        
+        elif 'coordinator' not in request.user.username:
+            return redirect('studentdashboard')
         else:
             return redirect('choice')
-        
-            return render(request, 'home.html',  {'graph_json': graph_json})
-    
-            return render(request, 'home.html')
     return redirect('login')
 
 @cache_control(no_cache = True, must_revalidate = True, no_store = True)
@@ -181,9 +145,9 @@ def FormPage_1(request):
     # batch_and_students = {'Batch 154':['Muhammed Afsal','Muhammed Suhail', 'Muhammed Noushad', 'Aslah', 'Jasir', 'Devanandh', 'Jayakrishnan', 'Farsin', 'Vaisakh', 'Anil', 'Shijildas'],
     #                       'Batch 155':['Muhammed Noushad', 'Aslah', 'Jasir', 'Devanandh',]}
 
-    profile = request.user.userprofile  # Assuming the related model field is 'userprofile'
-    batch_name = profile.batch_name
-    names = batchwise_names(batch_name)
+    # profile = request.user.userprofile  # Assuming the related model field is 'userprofile'
+    # batch_name = profile.batch_name
+    # names = batchwise_names(batch_name)
 
     context = {'students': names, 'batch': batch_name}
     return render(request, 'form1.html', context)
@@ -191,6 +155,14 @@ def FormPage_1(request):
 
 @cache_control(no_cache = True, must_revalidate = True, no_store = True)
 def FormPage_2(request):
+    profile = request.user.userprofile  # Assuming the related model field is 'userprofile'
+    batch_name = profile.batch_name
+    names = batchwise_names(batch_name)
+    students = {}
+    for i in range(len(names)):
+        students[names[i]] = i+2
+        print(batch_name)
+    
     if request.method == 'POST':
         batch = request.POST.get('batch')
         checkbox_data = request.POST.getlist('student_names') 
@@ -198,15 +170,14 @@ def FormPage_2(request):
         print(batch)
         print(checkbox_data)
         print(desc)
-
+        print('REACHED HERE')
         # Database logic
-        session_report(batch, checkbox_data, desc)
+        session_report(batch_name, checkbox_data, desc)
 
         return redirect('choice')
-    students = ['Muhammed Afsal','Muhammed Suhail', 'Muhammed Noushad', 'Aslah', 'Jasir', 'Devanandh', 'Jayakrishnan', 'Farsin', 'Vaisakh', 'Anil', 'Shijildas']  # Get student data from your source
     # batches = ['Batch 154','Batch 155','Batch 166','Batch 167','Batch 168','Batch 186', 'Batch 198']
-    batches = ['Batch 154','Batch 161','Batch 163','Batch 173','Batch 177','Batch 179','Batch 186']
-    context = {'students': students, 'batches': batches}
+    
+    context = {'students': students, 'batch': batch_name}
     return render(request, 'form2.html', context)
 
 
@@ -300,6 +271,96 @@ def BatchChoice(request):
     return render(request, 'batchchoice.html', context=context)
 
 
+def StudentDashboard(request):
+    if request.user.is_authenticated:
+        filler_words = ["Actually","I mean","So","See"]
+        filler_count = [10,15,20,16]
+        # Create the bar plot
+        fig = go.Figure(data=[go.Bar(x=filler_words, y=filler_count)])
+        # Update the layout
+        fig.update_layout(xaxis_title='Filler Words', yaxis_title='Count', plot_bgcolor='#3A3E54', paper_bgcolor='#3A3E54', font_color='#FFFFFF', autosize=True, margin=dict(l=40, r=40, t=40, b=40), yaxis_range=[0, 30])
+        # Convert the figure to HTML with responsive configuration
+        graph_html = pio.to_html(fig, full_html=False, config={'responsive': True})
+        return render(request, 'student_report.html',  {'graph_html': graph_html})
+
+
+def IndividualReport(request):
+    filler_words = {
+        "actually": 1,
+        "i_mean": 1,
+        "so": 3,
+        "see": 3,
+        "total": 8
+      }
+    
+    filler_count = 0
+    for word in filler_words:
+        filler_count += filler_words[word]
+
+    pauses = {
+        "pause_1": "after 'Mother's Day'",
+        "pause_2": "before 'I will say about the video'",
+        "total": 2
+      }
+    
+    pause_count = 0
+    for pause in pauses:
+        pause_count += 1
+    
+    coherences =  [
+          "The speaker seems to struggle to maintain a coherent flow, jumping between thoughts.",
+          "Repetition of ideas without clear transitions.",
+          "The message about not needing a specific day to celebrate mothers is clear, but it could be more succinct."
+        ]
+
+    grammars = [
+          "'It is basically a YouTube video that talk about Mother's Day.' should be 'talks about Mother's Day.'",
+          "'I will say about the video.' should be 'I will talk about the video.'",
+          "'She expressed that how, what she wants to become in the future and she explains, I mean, she represents so many professions but at last she wants to be like her mother.' is awkward and could be clearer.",
+          "'She loves to be her mother.' should be 'She loves to be like her mother.'",
+          "'See, every person has her, has her first role more or less, her' is incomplete and confusing.",
+          "'We doesn't need any specific day' should be 'We don't need any specific day.'",
+          "'We should love her, we should care her all the day.' should be 'We should love her, we should care for her every day.'",
+          "'That was special to us in our life too.' is unclear and could be 'She has been special to us in our life too.'"
+        ]
+    
+    suggestions =  [
+      "Organize thoughts before speaking to ensure a logical flow.",
+      "Reduce filler words by practicing the speech multiple times.",
+      "Review grammar rules or consider writing out the speech to identify and correct errors.",
+      "Focus on delivering a clear and concise message, avoiding unnecessary repetition."
+    ]
+
+    context = {'filler_words': filler_words, 'filler_count': filler_count, 'pauses': pauses, 'coherences': coherences, 'grammars': grammars, 'suggestions': suggestions}
+
+    return render(request, 'individual_report.html', context=context)
+
+
+# def AudioUpload(request):
+#     if request.method == 'POST':
+#         audio_file = request.FILES.get('audio_file')
+        
+#         # Check if a file was uploaded
+#         # if not audio_file:
+#         #     return JsonResponse({'error': 'No audio file uploaded'}, status=400)
+        
+#         print(audio_file)
+
+#         # Return information about the uploaded file
+#         return JsonResponse({
+#         'filename': audio_file.name,
+#         'size': audio_file.size,
+#         'content_type': audio_file.content_type,
+#         })
+#     else:
+#         # Handle other HTTP methods (optional)
+#         return render(request, 'audio_upload.html')
+
+
+
+
+###################################################################################################
+
 
 def audio_report(batch, checkbox_data, students):
     sh = gc.open("AUDIO")
@@ -347,13 +408,14 @@ def session_report(batch, checkbox_data, desc):
     print(sh.creationTime)
 
     batches = {
-        'Batch 154':2,
-        'Batch 161':3,
-        'Batch 163':4,
-        'Batch 173':5,
-        'Batch 177':6,
-        'Batch 179':7,
-        'Batch 186':8
+        'BCE154':2,
+        'BCE161':3,
+        'BCE163':4,
+        'BCE173':5,
+        'BCE177':6,
+        'BCE179':7,
+        'BCE186':8,
+        'BCE148':9
     }
 
     today = date.today()
@@ -376,4 +438,6 @@ def batchwise_names(batch):
     names = []
     for i in range(1, len(values)):
         names.append(values[i][1])
+    print(names)
     return names
+

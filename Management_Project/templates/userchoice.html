@@ -29,6 +29,25 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             color: white;
         }
+        h1 {
+            color: white;
+        }
+        .overlay {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(223, 216, 216, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
         @media (max-width: 768px) {
             .card {
                 width: 80vw;
@@ -37,14 +56,16 @@
     </style>
 </head>
 <body>
-    <h1>hi coordinator of {{batch_name}}</h1>
+    <h1>Hi Coordinator of {{batch_name}}</h1>
+    <br>
+    <br>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">What would you like to do today?</h5>
             <br>
             <div class="d-flex justify-content-center gap-3">
-                <a href="{% url 'form1' %}" class="btn btn-primary">Audio Report</a>
-                <a href="{% url 'form2' %}" class="btn btn-primary">Session Report</a>
+                <a href="{% url 'form1' %}" class="btn btn-success submit-btn">🔉 Submit Audio Report </a>
+                <a href="{% url 'form2' %}" class="btn btn-success submit-btn">📝 Submit Session Report </a>
             </div>
             
         </div>
@@ -52,5 +73,34 @@
     </div>
     <br><br>
     <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
+
+
+    <!-- Loader and overlay -->
+    <div class="overlay d-none" id="overlay">
+        <h2 class="sr-only weight-bold">Loading</h2>
+        <br>
+        <div class="spinner-border text-primary" role="status">
+            <!-- <span class="sr-only">Loading...</span> -->
+        <!-- </div> -->
+    </div>
+
+
+    <!-- Custom JavaScript -->
+    <script>
+    document.querySelectorAll('.submit-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            // Show the loader and overlay
+            document.getElementById('overlay').classList.remove('d-none');
+            
+        });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+   
 </body>
 </html>
