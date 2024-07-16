@@ -38,13 +38,13 @@ credential_json = {
 
 
 # credential_path = 'sam_sir_project/app1/credentials.json'
-credential_path = './credentials.json'
+credential_path = 'credentials.json'
 # credentials, project = google.auth.default()
 # credentials = service_account.Credentials.from_service_account_file(
 #     credential_json)
 scopes = ['https://spreadsheets.google.com/feeds',
           'https://www.googleapis.com/auth/drive']
-gc = gspread.service_account(filename='./credentials.json', scopes=scopes)
+gc = gspread.service_account(filename='credentials.json', scopes=scopes)
 
 
 # Create your views here.
