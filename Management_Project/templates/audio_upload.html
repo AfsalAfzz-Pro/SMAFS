@@ -73,14 +73,14 @@
         <br>
         <div class="audio-card">
             <div class="audio-card-body" enctype="multipart/form-data">
-                <form method="POST" action="" class="d-flex flex-column">
+                <form method="post" enctype="multipart/form-data" class="d-flex flex-column justify-content-center align-items-center"> 
                     {% csrf_token %}
-                    <input type="file" id="file-input" name="audio_file" class="btn btn-secondary">
-                    <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    {{ form.as_p }}
+                    <button type="submit" class ="btn btn-primary">Upload</button>
+                  </form>
             </div>
         </div>
+
     </div>
   
     <br>

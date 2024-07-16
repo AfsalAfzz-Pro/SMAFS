@@ -481,14 +481,23 @@
 
           <div class="content">
             <p>
+
+
+              {% if filler_words %}
+
               <h5 style="color: #a188d3;">Filler Words: <span style="color: white;">{{ filler_count }}</span></h5>
 
-              {% for word in filler_words %}
+              {% for word, count in filler_words.items %}
 
-             <li>{{ word }}</li> 
+             <li>{{ word }} : {{ count }}</li> 
               
               {% endfor %}
 
+              {% endif %}
+
+
+
+              {% if pauses %}
               <br>
               <h5 style="color: #a188d3;">Long Pauses: {{ pause_count}}</h5>
 
@@ -497,6 +506,10 @@
               <li>{{ pause }}</li>
 
               {% endfor %}
+              {% endif %}
+
+
+              {% if coherences %}
 
               <br>
               <h5 style="color: #a188d3;">Coherence:</h5>
@@ -506,6 +519,10 @@
               <li>{{ coherence }}</li>
 
               {% endfor %}
+              {% endif %}
+
+
+              {% if grammars %}
             <br>
             <h5 style="color: #a188d3;">Grammar and Syntax:</h5>
 
@@ -514,15 +531,16 @@
             <li>{{ grammar }}</li>
 
               {% endfor %}
+              {% endif %}
             
             <br>
-            <h5 style="color: #a188d3;">Suggestions for Improvement:</h5>
+            <!-- <h5 style="color: #a188d3;">Suggestions for Improvement:</h5>
 
               {% for suggestion in suggestions %}
 
               <li>{{ suggestion }}</li>
 
-              {% endfor %}  
+              {% endfor %}   -->
           
           </p>
 
@@ -550,7 +568,8 @@
             </div>
         </div>
     </div> -->
-      
+
+
 
 </div>
 

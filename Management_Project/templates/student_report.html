@@ -1,295 +1,300 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-      body {
-          height: 130vh;
-          /* display: flex;
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      height: 130vh;
+      /* display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center; */
-          /* margin: 3%;    */
-          padding: 0;
-          background-color: #2B2F42;
-          color: white;
-          /* gap: 10px; */
-          font-family: "Poppins", sans-serif;
-      }
+      /* margin: 3%;    */
+      padding: 0;
+      background-color: #2B2F42;
+      color: white;
+      /* gap: 10px; */
+      font-family: "Poppins", sans-serif;
+    }
 
-      .big-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
+    .big-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-      .containera {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        /* margin: 10px; */
-      }
+    .containera {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      /* margin: 10px; */
+    }
 
-      .containerb {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 2%;
-        margin: 10px;
-      }
-
-
-
-      /* this is header  */
-
-      .container0 {
-        background-color: #2B2F42;
-        width: 80vw;
-        height: 10vh;
-        border-radius: 15px;
-        padding: 10px;
-        font-family: "Poppins", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        
-      }
-
-  
+    .containerb {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 2%;
+      margin: 10px;
+    }
 
 
 
-      /* header ends  */
+    /* this is header  */
 
-      /* this is the container for the cards  */
-      .container1 {
-        background-color: #2B2F42 ;
-        display: flex;
-        flex-direction: column;
-        /* margin: auto; */
-        /* padding: 1%; */
-        width: 50vw;
-        height: 50vh;
-        border-radius: 15px;
-      }
+    .container0 {
+      background-color: #2B2F42;
+      width: 80vw;
+      height: 10vh;
+      border-radius: 15px;
+      padding: 10px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
 
-      
-      .container2 {
-        background-color: #2B2F42;
-        width: 30vw;
-        height: 50vh;
-        border-radius: 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 1%;
-        }
-        
-        /* container 1 css */
+    }
 
 
-        .container3 {
-            background-color: #2B2F42 ;
-            width: 80vw;
-            height: 40vh;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-          }
 
 
-       
-        .text {
-          background-color: #3A3E54 ;
-          width: 98%;
-          height: 98%;
-          border-radius: 15px;
-          margin: 10px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
+
+    /* header ends  */
+
+    /* this is the container for the cards  */
+    .container1 {
+      background-color: #2B2F42;
+      display: flex;
+      flex-direction: column;
+      /* margin: auto; */
+      /* padding: 1%; */
+      width: 50vw;
+      height: 50vh;
+      border-radius: 15px;
+    }
 
 
-        .scores {
-          background-color: #3A3E54 ;
-          width: 100%;
-          height: 100%;
-          /* margin-bottom: 10px; */
-          border-radius: 15px;
-          /* padding: 10px; */
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-evenly;
-          text-size-adjust: auto;
-          text-wrap: auto;
-          /* gap: 10px; */
-          }
+    .container2 {
+      background-color: #2B2F42;
+      width: 30vw;
+      height: 50vh;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1%;
+    }
 
-          .score1 {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            /* border: wheat 1px solid;
+    /* container 1 css */
+
+
+    .container3 {
+      background-color: #2B2F42;
+      width: 80vw;
+      height: 40vh;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+
+    .text {
+      background-color: #3A3E54;
+      width: 98%;
+      height: 98%;
+      border-radius: 15px;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .scores {
+      background-color: #3A3E54;
+      width: 100%;
+      height: 100%;
+      /* margin-bottom: 10px; */
+      border-radius: 15px;
+      /* padding: 10px; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      text-size-adjust: auto;
+      text-wrap: auto;
+      /* gap: 10px; */
+    }
+
+    .score1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* border: wheat 1px solid;
             border-radius: 10px; */
-            padding: 10px;
-          }
+      padding: 10px;
+    }
 
-          .score2 {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            /* border: wheat 1px solid; */
-            /* border-radius: 10px; */
-            padding: 10px;
-          }
+    .score2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* border: wheat 1px solid; */
+      /* border-radius: 10px; */
+      padding: 10px;
+    }
 
-          .score3 {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            /* border: wheat 1px solid;
+    .score3 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* border: wheat 1px solid;
             border-radius: 10px; */
-            padding: 10px;
-          }
+      padding: 10px;
+    }
 
-          .scores h5 {
-            font-size: 2.20 vw;
-          }
-          
-          .scores p {
-            font-size: 2vh;
-          }
+    .scores h5 {
+      font-size: 2.20 vw;
+    }
 
-      .graph1 {
-        background-color: #3A3E54;
-        width: 100%;
-        height: 40%;
-        /* margin: 10px; */
-        border-radius: 15px;
-      }
+    .scores p {
+      font-size: 2vh;
+    }
 
-      /* container 0 css */
+    .graph1 {
+      background-color: #3A3E54;
+      width: 100%;
+      height: 40%;
+      /* margin: 10px; */
+      border-radius: 15px;
+    }
 
-      .cardstop {
-        background-color: #2B2F42;
-        display: flex;
-        gap: 1%;
-        width: 97%;
-        height: 50%;
-        margin: 10px;
-        padding: 1%;
-        border-radius: 15px;
-      }
+    /* container 0 css */
 
-      .scard1 {
-        background-color: #3A3E54 ;
-        width: 98%;
-        height: 98%;
-        border-radius: 15px;
-        padding: 2%;
-        display: flex;
-        flex-direction: column;
-        margin: 10px;
-        align-items: center;
-        justify-content: center;
-      }
+    .cardstop {
+      background-color: #2B2F42;
+      display: flex;
+      gap: 1%;
+      width: 97%;
+      height: 50%;
+      margin: 10px;
+      padding: 1%;
+      border-radius: 15px;
+    }
 
-      .scard1 > div {
-            width: 90%;
-            height: 90%;
-        }
+    .scard1 {
+      background-color: #3A3E54;
+      width: 98%;
+      height: 98%;
+      border-radius: 15px;
+      padding: 2%;
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .scard2 {
-        background-color: #3A3E54 ;
-        width: 33%;
-        height: 100%;
-        border-radius: 15px;
-        padding: 2%;
-        display: flex;
-        flex-direction: column;
-      }
+    .scard1>div {
+      width: 90%;
+      height: 90%;
+    }
 
-      .scard3 {
-        background-color: #3A3E54 ;
-        width: 33%;
-        height: 100%;
-        border-radius: 15px;
-        padding: 2%;
-        display: flex;
-        flex-direction: column;
-      }
+    .scard2 {
+      background-color: #3A3E54;
+      width: 33%;
+      height: 100%;
+      border-radius: 15px;
+      padding: 2%;
+      display: flex;
+      flex-direction: column;
+    }
 
-      .cardstop h4 {
-          font-size: 2.20vw;
-        }
+    .scard3 {
+      background-color: #3A3E54;
+      width: 33%;
+      height: 100%;
+      border-radius: 15px;
+      padding: 2%;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .cardstop p {
-          font-size: 2.20vw;
-        }
-        .cardsmid {
-          background-color: #2B2F42 ;
-          width: 97%;
-          height: 36%;
-          gap: 1%;
-          margin: 10px;
-          margin-right: 10px;
-          border-radius: 15px;
-          padding-left: 5px;
-        }
+    .cardstop h4 {
+      font-size: 2.20vw;
+    }
+
+    .cardstop p {
+      font-size: 2.20vw;
+    }
+
+    .cardsmid {
+      background-color: #2B2F42;
+      width: 97%;
+      height: 36%;
+      gap: 1%;
+      margin: 10px;
+      margin-right: 10px;
+      border-radius: 15px;
+      padding-left: 5px;
+    }
 
 
-  .navbar {
-    background-color: #3A3E54;
-    padding: 10px 20px;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+    .navbar {
+      background-color: #3A3E54;
+      padding: 10px 20px;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* .navbar-container {
+    /* .navbar-container {
     display: flex;  
     justify-content: space-between;
     align-items: center;
 } */
 
-.logo {
-    color: white;
-    font-size: 1.5em;
-    font-weight: bold;
-}
+    .logo {
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
 
-.navbar-buttons {
-    margin: 5px;
-    gap: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .navbar-buttons {
+      margin: 5px;
+      gap: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* .navbar-button {
+    /* .navbar-button {
     background-color: white;
     color: #3A3E54;
     border: none;
@@ -301,132 +306,154 @@
     
 } */
 
-.navbar-button:hover {
-    background-color: #dddddd;
-}
-
-      @media (max-width: 1024px) {
-        .container1 {
-          width: 82vw;
-          height: 80vh; /* 40vh */
-        }
-        .containerb {
-          flex-direction: column;
-          /* margin: 0; */
-        }
-        .container2 {
-          width: 80vw;
-          height: 40vh;
-        }
-
-        .scores {
-          flex-direction: row;
-        }
-
-        .cardstop h4 {
-          font-size: 3vw;
-        }
-
-        .cardstop p {
-          font-size: 2.5vw;
-        }
-
-        
-       
-      }
-
-      @media (max-width: 768px) {
-        .container1 {
-          width: 82vw;
-          height: 92vw; /* 40vh */
-        }
-        .scores h5 {
-          font-size: 3vw;
-        }
-        .scores p {
-          text-align: center;
-          font-size: 2.5vw;
-        }
-        .container2 {
-          width: 80vw;
-          height: 40vw;
-        }
-
-        .cardsmid {
-         height: 60%;
-        }
-      }
-
-      .cardlow {
-        background-color: #0f194b ;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1%;
-        width: 98%;
-        height: 33%;
-        margin: 10px;
-        padding: 1%;
-        border-radius: 15px;
-      }
-
-      .mcard1 {
-        background-color: #1ea384 ;
-        width: 99%;
-        height: 100%;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 5px;
-      }
-
-      
-
-    .graph1 {
-        background-color: #3A3E54 ;
-        width: 99%;
-        height: 50%;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .navbar-button:hover {
+      background-color: #dddddd;
     }
 
-    .graph1 > div {
-            width: 90%;
-            height: 80%;
-        }
+    @media (max-width: 1024px) {
+      .container1 {
+        width: 82vw;
+        height: 80vh;
+        /* 40vh */
+      }
+
+      .containerb {
+        flex-direction: column;
+        /* margin: 0; */
+      }
+
+      .container2 {
+        width: 80vw;
+        height: 40vh;
+      }
+
+      .scores {
+        flex-direction: row;
+      }
+
+      .cardstop h4 {
+        font-size: 3vw;
+      }
+
+      .cardstop p {
+        font-size: 2.5vw;
+      }
 
 
-.suggestions {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  
-}
+
+    }
+
+    @media (max-width: 768px) {
+      .container1 {
+        width: 82vw;
+        height: 92vw;
+        /* 40vh */
+      }
+
+      .scores h5 {
+        font-size: 3vw;
+      }
+
+      .scores p {
+        text-align: center;
+        font-size: 2.5vw;
+      }
+
+      .container2 {
+        width: 80vw;
+        height: 40vw;
+      }
+
+      .cardsmid {
+        height: 60%;
+      }
+    }
+
+    .cardlow {
+      background-color: #0f194b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1%;
+      width: 98%;
+      height: 33%;
+      margin: 10px;
+      padding: 1%;
+      border-radius: 15px;
+    }
+
+    .mcard1 {
+      background-color: #1ea384;
+      width: 99%;
+      height: 100%;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 5px;
+    }
 
 
-        
 
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <h4>Summary Report</h4>
-      <div class="navbar-container">
-          <div class="navbar-buttons">
-            <a href="{% url 'individualreport' %}" class="btn btn-success">View Individual Reports</a>
-            <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
-          </div>
+    .graph1 {
+      background-color: #3A3E54;
+      width: 99%;
+      height: 50%;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .graph1>div {
+      width: 90%;
+      height: 80%;
+    }
+
+
+    .suggestions {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+
+    }
+
+    .overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(223, 216, 216, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <h4>Summary Report</h4>
+    <div class="navbar-container">
+      <div class="navbar-buttons">
+        <a href="{% url 'audio_upload' %}" class="btn btn-secondary ">Upload Audio</a>
+        <a href="{% url 'individualreport' %}" class="btn btn-success submit-btn">View Individual Reports</a>
+        <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
       </div>
+    </div>
   </nav>
 
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
 
-<div class="big-container">
+  <div class="big-container">
 
 
     <div class="containera">
@@ -436,7 +463,7 @@
       </div>
 
     </div>
-      
+
 
 
     <div class="containerb">
@@ -444,27 +471,27 @@
       <div class="container1">
 
         <!-- <div class="cardstop"> -->
-          <div class="scard1">
-            <h4>Filler Words</h4>
-            {{ graph_html|safe }}
-          </div>
+        <div class="scard1">
+          <h4>Filler Words</h4>
+          {{ graph_html|safe }}
+        </div>
         <!-- </div> -->
 
         <!-- <div class="cardstop"> -->
-          <!-- <div class="scard1">
+        <!-- <div class="scard1">
             <h4>Long Pauses:</h4>
             <p> - There is one noticeable pause after "Mother's Day."</p>
             <p>- Another pause before "I will say about the video."</p>
             <h6 style="justify-self: left;">Total long pauses: 2</h6>
           </div>
            -->
-         
-       
-          
-       
+
+
+
+
         <!-- </div> -->
 
-        
+
         <!-- <div class="cardlow">
           <div class="lcard1">
           </div>
@@ -476,10 +503,10 @@
       <div class="container2">
 
 
-       
+
 
         <div class="scores">
-            <h4>Overall Rating</h4>
+          <h4>Overall Rating</h4>
           <div class="score1">
             <p>Filler Words</p>
             <h5>4/10</h5>
@@ -499,25 +526,50 @@
     </div>
 
     <div class="containerc">
-        <div class="container3">
-            <div class="text" style="padding: 1%;">
-              <h4>Suggestions for Improvement</h4>
-              <br>
-              <div class="suggestions">
-                <p>1. Preparation: Organize thoughts before speaking to ensure a logical flow.</p>   
-                <p>2. Practice: Reduce filler words by practicing the speech multiple times.</p>
-                <p>3. Grammar: Review grammar rules or consider writing out the speech to identify and correct errors.</p>
-                <p>4. Clarity: Focus on delivering a clear and concise message, avoiding unnecessary repetition.</p>
-              </div>
-            </div>
+      <div class="container3">
+        <div class="text" style="padding: 1%;">
+          <h4>Suggestions for Improvement</h4>
+          <br>
+          <div class="suggestions">
+            <p>1. Preparation: Organize thoughts before speaking to ensure a logical flow.</p>
+            <p>2. Practice: Reduce filler words by practicing the speech multiple times.</p>
+            <p>3. Grammar: Review grammar rules or consider writing out the speech to identify and correct errors.</p>
+            <p>4. Clarity: Focus on delivering a clear and concise message, avoiding unnecessary repetition.</p>
+          </div>
         </div>
+      </div>
     </div>
-      
-    
 
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-  </body>
+
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+    <!-- Loader and overlay -->
+    <div class="overlay d-none" id="overlay">
+      <h2 class="sr-only weight-bold text-black">Generating Report</h2>
+      <br>
+      <div class="spinner-border text-primary" role="status">
+          <!-- <span class="sr-only">Loading...</span> -->
+      <!-- </div> -->
+  </div>
+
+
+  <!-- Custom JavaScript -->
+  <script>
+  document.querySelectorAll('.submit-btn').forEach(button => {
+      button.addEventListener('click', function(event) {
+          // Show the loader and overlay
+          document.getElementById('overlay').classList.remove('d-none');
+          
+      });
+      });
+  </script>
+
+</body>
+
 </html>
-

@@ -16,6 +16,7 @@ from google.oauth2 import service_account
 import gspread
 from datetime import date
 from .models import UserProfile
+from .forms import AudioUploadForm
 
 
 # Authorizing google service account and gspread
@@ -57,6 +58,7 @@ def HomePage(request):
             return redirect('choice')
     return redirect('login')
 
+
 @cache_control(no_cache = True, must_revalidate = True, no_store = True)
 def SignupPage(request):
     if request.user.is_authenticated:
@@ -74,18 +76,11 @@ def SignupPage(request):
             return HttpResponse("The passwords are not the same")
         else:
             # Create a new user
-             # Create a new user with password hashing
             user = User.objects.create_user(username=uname, password=pass1)
-            
+
             # Create a UserProfile instance
             profile = UserProfile.objects.create(user=user, batch_name=batch_name)
-
-            # new_user.save()
             return redirect('login')
-
-            # Redirect to a page indicating that an OTP has been sent
-            # return redirect('generate_otp')
-
     return render(request, 'signup.html')
 
 
@@ -106,7 +101,8 @@ def LoginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            return HttpResponse('Invalid credentials')
+            # return HttpResponse('Invalid credentials')
+            return render(request, 'login.html', context= {'error': 'Invalid credentials'})
 
     return render(request, 'login.html')
 
@@ -260,15 +256,35 @@ def DailyAudio(request):
 
 
 def DailySession(request):
-    return render(request, 'dailyreport2.html')
+    if request.method == 'POST':
+        batch_value = request.POST.get('batch')
+        print(batch_value)
+        sh = gc.open('SESSION')
+        worksheet = sh.worksheet('July')
+        today = date.today()
+        day = today.day
+        print(today.day)
+        report = worksheet.cell(2, day+1).value
+        print(report)
 
 
-def BatchChoice(request):
-    
-    
-    batches = ['BCE154','BCE148','BCE161','BCE163','BCE173','BCE177','BCE179','BCE186']
+
+    return render(request, 'dailyreport2.html', context={'batch':batch_value, 'report':report})
+
+
+
+def BatchChoiceAudio(request):
+    # batches = ['BCE154','BCE148','BCE161','BCE163','BCE173','BCE177','BCE179','BCE186']
+    batches = get_batch_names_out()
     context = {'batches': batches}
-    return render(request, 'batchchoice.html', context=context)
+    return render(request, 'batchchoiceaudio.html', context=context)
+
+
+
+def BatchChoiceSession(request):
+    batches = get_batch_names_out()
+    context = {'batches': batches}
+    return render(request, 'batchchoicesession.html', context=context)
 
 
 def StudentDashboard(request):
@@ -285,82 +301,155 @@ def StudentDashboard(request):
 
 
 def IndividualReport(request):
-    filler_words = {
-        "actually": 1,
-        "i_mean": 1,
-        "so": 3,
-        "see": 3,
-        "total": 8
-      }
-    
-    filler_count = 0
-    for word in filler_words:
-        filler_count += filler_words[word]
+   
+    sh = gc.open('July 2024')
 
-    pauses = {
-        "pause_1": "after 'Mother's Day'",
-        "pause_2": "before 'I will say about the video'",
-        "total": 2
-      }
-    
-    pause_count = 0
-    for pause in pauses:
-        pause_count += 1
-    
-    coherences =  [
-          "The speaker seems to struggle to maintain a coherent flow, jumping between thoughts.",
-          "Repetition of ideas without clear transitions.",
-          "The message about not needing a specific day to celebrate mothers is clear, but it could be more succinct."
-        ]
+    profile = request.user.userprofile  # Assuming the related model field is 'userprofile'
+    batch_name = profile.batch_name
 
-    grammars = [
-          "'It is basically a YouTube video that talk about Mother's Day.' should be 'talks about Mother's Day.'",
-          "'I will say about the video.' should be 'I will talk about the video.'",
-          "'She expressed that how, what she wants to become in the future and she explains, I mean, she represents so many professions but at last she wants to be like her mother.' is awkward and could be clearer.",
-          "'She loves to be her mother.' should be 'She loves to be like her mother.'",
-          "'See, every person has her, has her first role more or less, her' is incomplete and confusing.",
-          "'We doesn't need any specific day' should be 'We don't need any specific day.'",
-          "'We should love her, we should care her all the day.' should be 'We should love her, we should care for her every day.'",
-          "'That was special to us in our life too.' is unclear and could be 'She has been special to us in our life too.'"
-        ]
-    
-    suggestions =  [
-      "Organize thoughts before speaking to ensure a logical flow.",
-      "Reduce filler words by practicing the speech multiple times.",
-      "Review grammar rules or consider writing out the speech to identify and correct errors.",
-      "Focus on delivering a clear and concise message, avoiding unnecessary repetition."
-    ]
+    batch_sheet = sh.worksheet(batch_name)
 
-    context = {'filler_words': filler_words, 'filler_count': filler_count, 'pauses': pauses, 'coherences': coherences, 'grammars': grammars, 'suggestions': suggestions}
+    today = date.today()
+    day = today.day
+    print(today.day)
+
+    name = request.user.username
+
+    # database logic 
+
+    values = batch_sheet.get_all_values()
+    names = []
+    for i in range(1, len(values)):
+        names.append(values[i][1])
+    print(names)
+
+    students = {}
+    for i in range(len(names)):
+        students[names[i]] = i+2
+
+    std_num = students[name]
+
+    transcript = batch_sheet.cell(std_num, day+2).value
+
+    report = generate_report(transcript)
+
+    cnt = report.choices[0].message.content
+  
+    
+
+    import json
+    json_str = cnt
+
+    json_obj = json.loads(json_str)
+    # json_obj = json_str
+    print(type(json_obj))
+
+    print()
+    print()
+    print(json_obj)
+    print()
+    print()
+    # Getting metrics
+
+    context = {}
+
+    try:
+        filler_words = json_obj['filler_words']
+        print('filler words no issue')
+        context['filler_words'] = filler_words
+    except Exception as e:
+        print('filler words issue')
+
+    try:
+        filler_count = json_obj['filler_words']['total']
+        print("filler_count not issue")
+        context['filler_count'] = filler_count
+    except Exception as e:
+        print("filler_count issue")
+
+    try:
+        pauses = json_obj['pauses']
+        print("pauses no issue")
+        context['pauses'] = pauses
+    except Exception as e:
+        print("pauses issue")
+
+    try:
+        coherences = json_obj['coherences']
+        print('coherences no issue')
+        context['coherences'] = coherences
+    except Exception as e:
+        print('coherences issue')
+
+    try:
+        grammar = json_obj['grammar']
+        print("grammar no issue")
+        context['grammars'] = grammar
+    except Exception as e:
+        print("grammar issue")
+
+    print()
+    print()
+    print(context)
+    print()
+    print()
 
     return render(request, 'individual_report.html', context=context)
 
 
-# def AudioUpload(request):
-#     if request.method == 'POST':
-#         audio_file = request.FILES.get('audio_file')
-        
-#         # Check if a file was uploaded
-#         # if not audio_file:
-#         #     return JsonResponse({'error': 'No audio file uploaded'}, status=400)
-        
-#         print(audio_file)
+def AudioUpload(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = AudioUploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                audio_file = request.FILES['audio_file']
+                # Upload the audio file to Cloud Storage using Cloud Storage API
+                # (Replace with the actual upload logic)
+                profile = request.user.userprofile  # Assuming the related model field is 'userprofile'
+                batch_name = profile.batch_name
+                context = {'batch_name': batch_name}
+                upload_to_cloud_storage(audio_file)  # Placeholder function
+                return redirect('studentdashboard')
+                return HttpResponse('Audio uploaded successfully!')  # Redirect to success page
+        else:
+            form = AudioUploadForm()
+            return render(request, 'audio_upload.html', {'form': form})
+    
+    else:
+        return redirect('login')
+    
 
-#         # Return information about the uploaded file
-#         return JsonResponse({
-#         'filename': audio_file.name,
-#         'size': audio_file.size,
-#         'content_type': audio_file.content_type,
-#         })
-#     else:
-#         # Handle other HTTP methods (optional)
-#         return render(request, 'audio_upload.html')
+    
 
 
 
 
 ###################################################################################################
 
+def upload_to_cloud_storage(audio_file):
+    from google.cloud import storage
+    import uuid
+
+    # Create a Cloud Storage client
+    client = storage.Client()
+
+    # Get the bucket
+    # GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
+    # if not GS_BUCKET_NAME:
+    #     raise ValueError('GS_BUCKET_NAME environment variable is not set')
+    bucket = client.bucket('communication_bucket')
+
+    # Create a unique filename for the uploaded file
+    # filename = f'{uuid.uuid4()}.{audio_file.name.split(".")[-1]}'  # Generate unique filename with extension
+    # filename = f'{audio_file.name.split(".")[0]}_{uuid.uuid4().hex}.{audio_file.name.split(".")[-1]}'
+    filename = f'{audio_file.name}'
+
+    # Upload the file to the bucket
+    blob = bucket.blob(filename)
+    blob.upload_from_string(
+        audio_file.read(),
+        content_type=audio_file.content_type
+    )
 
 def audio_report(batch, checkbox_data, students):
     sh = gc.open("AUDIO")
@@ -422,8 +511,22 @@ def session_report(batch, checkbox_data, desc):
     day = today.day
     print(today.day)
 
-    batch_sheet = sh.worksheet('June')
+    batch_sheet = sh.worksheet('July')
     batch_sheet.update_cell(batches[batch], day+1, desc)
+
+    # Session Attendance
+
+    sh1 = gc.open('SESSION_ATTENDANCE')
+    print(checkbox_data)
+
+    students = batchwise_names(batch)
+    print(students)
+
+    for student in checkbox_data:
+        batch_sheet = sh1.worksheet(batch)
+        std_num = students[student]
+        batch_sheet.update_cell(std_num, day+2, 'Attended')
+
 
 
 def batchwise_names(batch):
@@ -441,3 +544,65 @@ def batchwise_names(batch):
     print(names)
     return names
 
+def get_batch_names_out():
+    sh = gc.open('SESSION')
+
+    sheet = sh.worksheet('temp')
+
+    batches = sheet.col_values(1)
+    
+    return batches[1:]
+
+
+
+def generate_report(transcript):
+    from openai import OpenAI
+    api_key = 'sk-proj-ECQHHdwHcw2AjgRsv22OT3BlbkFJWhvVPIuU9QgCFvAcDXB7'
+    client = OpenAI(
+        # Defaults to os.environ.get("OPENAI_API_KEY")
+        api_key=api_key
+    )
+
+    template = { 
+        'filler_words': {
+                "mention the filler word and how many times it was repeated": 2,
+                "mention the filler word and how many times it was repeated": 2,
+                "total (mention the count of all filler word in the transcript)": 5
+            },
+        'pauses': ["mention about any specific pause from the transcript"],
+        'coherences':[
+                "Mention about any specific coherence from the transcript",
+                "Mention about any specific coherence from the transcript",
+                "Mention about any specific coherence from the transcript"
+                ],
+        'grammar': [
+                "mention about any specific grammar mistake from the transcript and it's correction",
+                "mention about any specific grammar mistake from the transcript and it's correction",
+                "mention about any specific grammar mistake from the transcript and it's correction",
+                "mention about any specific grammar mistake from the transcript and it's correction",
+                ],
+        'suggestions':[
+            "suggestion_to_imporve_1",
+            "suggestion_to_imporve_2",
+            "suggestion_to_imporve_3",
+            "suggestion_to_imporve_4",
+            ]
+
+        }
+
+    chat_completion = client.chat.completions.create(
+        model="gpt-3.5-turbo-0125",
+        response_format={ "type": "json_object" },
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
+            {"role": "user", "content": f"I will provide you a transcript of an audio. Rate it using metrics like number of filler words, long pauses, coherence, and grammar. return the report in json format like this {template}. here is the transcript {transcript}. Don't mention the word transcript in the output. Make sure the data is present in a useful structure for the reader to analyse from their report. for the grammar make sure you tell them what their mistake is and the corrected version"}
+            ]
+    )
+
+    
+    return chat_completion
+
+
+
+
+    

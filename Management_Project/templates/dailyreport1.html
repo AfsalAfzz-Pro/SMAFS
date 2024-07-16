@@ -357,7 +357,7 @@
         <br>
         <br>
         <h2>Performance Overview of {{batch}}</h2>
-         <a href="{% url 'logout' %}" class="btn btn-primary">logout</a>
+         <a href="{% url 'logout' %}" class="btn btn-danger">logout</a>
       </div>
 
     </div>
@@ -387,19 +387,9 @@
         </div>
         <div class="cardsmid">
           <div class="mcard1">
-              {{ graph_html|safe }}
-            <!-- <div id="plotly-div"></div>
-            <script type="text/javascript">
-                var plotly_data = {{ graph_json| safe }};
-                Plotly.react('plotly-div', plotly_data.data, plotly_data.layout);
-            </script>  -->
+            {{ graph_html|safe }}
           </div>
         </div>
-        <!-- <div class="cardlow">
-          <div class="lcard1">
-          </div>
-          <div class="lcard2"></div>
-        </div> -->
       </div>
 
 

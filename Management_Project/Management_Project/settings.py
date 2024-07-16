@@ -125,5 +125,11 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# GCP authentication
+GOOGLE_APPLICATION_CREDENTIALS = 'credentials.json'  # Replace with your credentials path
+
+# Cloud Storage configuration
+DEFAULT_FILE_STORAGE = 'storages.backends.gcs.GCSStorage'
+GS_BUCKET_NAME = 'communication_bucket'  # Replace with your bucket name
 
 

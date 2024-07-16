@@ -21,7 +21,7 @@
             font-family: "Poppins", sans-serif;
         }
         .card {
-            width: 30vh;  /* was 50 */
+            width: 40vh;  /* was 50 */
             padding: 30px;
             /* padding-top: 30px; */
             background-color: #3A3E54;
@@ -38,22 +38,26 @@
 </head>
 <body>
 
-    <div class="containe d-flex justify-content-center gap-4">
+    <div class="containe d-flex flex-column justify-content-center align-items-center gap-4">
+
+        <h3 class="card-title text-center text-white">What would you like to do today?</h3>
 
         <div class="card">
             <div class="card-body">
-                <!-- <h5 class="card-title text-center">What would you like to do today?</h5> -->
-                <br>
                 <div class="d-flex justify-content-center gap-3 flex-column align-items-center">
                     <!-- <a href="{% url 'dailyreport1' %}" class="btn btn-primary">Daily Audio Report</a> -->
-                    <a href="{% url 'batchchoice' %}" class="btn btn-primary">Batchwise Audio Report</a>
+                    <a href="{% url 'batchchoice1' %}" class="btn btn-light">Batchwise Audio Report</a>
+                    <!-- <a href="{% url 'dailyreport1' %}" class="btn btn-primary">Daily Audio Report</a> -->
+                    <a href="{% url 'batchchoice2' %}" class="btn btn-light">Batchwise Session Report</a>
+                    <!-- <a href="{% url 'dailyreport2' %}" class="btn btn-primary">Daily Session Report</a> -->
                 </div>
                 
             </div> 
         </div>
-        <div class="card">
+
+        <!-- <div class="card">
             <div class="card-body">
-                <!-- <h5 class="card-title text-center">What would you like to do today?</h5> -->
+                <h5 class="card-title text-center">What would you like to do today?</h5>
                 <br>
                 <div class="d-flex justify-content-center gap-3 flex-column">
                     <a href="{% url 'dailyreport1' %}" class="btn btn-primary">Daily Audio Report</a>
@@ -61,7 +65,7 @@
                 </div>
                 
             </div> 
-        </div>
+        </div> -->
 
     </div>
 

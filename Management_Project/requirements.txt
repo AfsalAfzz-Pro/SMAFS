@@ -1,3 +1,6 @@
 django
 plotly
 gspread 
+django-storages
+google-cloud-storage
+openai
