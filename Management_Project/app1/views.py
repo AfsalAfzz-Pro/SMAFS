@@ -21,30 +21,44 @@ from .forms import AudioUploadForm
 
 # Authorizing google service account and gspread
 
-credential_json = {
+# credential_json = {
+#   "type": "service_account",
+#   "project_id": "top-sunrise-420513",
+#   "private_key_id": "6792ab2b5f54fe8c496535b1b7ffa985cabfcf06",
+#   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC9kOF8i4roSBBC\n+DUcwqZ2Pw8+GLJQT4mkj+7TegPF3LJwutkGHd+mPIkE5Ql9DVTAryMEldGQsAws\nCPYvmmlmycaW78WAXbWNIdZ1tgq4DZo1Rr2+kExFd6bmA9LNfsOaKq4nbkGLxBPQ\nAAc7zJXba4YpzdW9iHo3vDna1GwbAEm7bfSen97MEmv2ZNRLuNcm80sHUsdALMsM\n1YTqEStS6WPZgyUtXpcZfJDn7Ws+0GdU+wEOe3KrmTs4Zp/51XzvXXm/uMVpRWEf\nySNMvLao6uWyDJDUpEP/uhH9x8aLCSy1HBK+EeFEYgd5ICoanb6TCXKilC6KZtoL\n5mpe+ul/AgMBAAECggEAGhp3ul86xwaZWqd0JNw28OR5FFtxPnbdZNA/GlbcayQb\nXEOWe+2kLO98DLT/S/2IdKoJP+njfDGJ04x+Xgq8xd82HfWxdB4zUFZfAkGJk1Oo\nLvrpSPL01cIGtPjEz/BLPhDvf1WC6Bydf9BpLpZa8maJiHskGh/PeJpOOzByHHt9\n86uI5A1Lop2OBieQ2rKhwsPB5NDTjIxjsyR/rISE8dJQchnnzFCRJbbznlA4drOR\nqG+G2I2xqI3RElCzlQZyYAKRGkLOfmgyP3jInm5UI8ALV88/FNPWlKI2jvvxHMat\noRhorsO0kHPPW/4ofmQED4y0AURZcdhG04naOzZjpQKBgQD7/RjJbNPQYno5zb58\nKzHrA8fQtcrSUVwEnoP2aT6sSojHsd3CQMZxSivyI4pVDk4ZOrbP1OCeljnz0Y92\n4PeXHIn8bCxbTJO7+4PHBfoIKsoH7+wYPKRTf9Xi5QHqS3Ghb8tMEt1vOv2JtO4Z\n7aWRtWbErpf+zeTe4B5RRWLcxQKBgQDAlWYv9S9r3u4dxWBKiBw/p0aFfjtItHAB\n6oTSSUYUXL+Ta4+3ewtONgBfwYpslYYU+Iv0ECF7TR1OsDf+tcd9j6A2bWhlJEp7\nuIRjzUPgzLqOpXHuPqUyABMRzVDp6kw0D+nES5FlQLZSZgQQ7Q7Mq6//Eeqp6JHn\ni9BUwSCZcwKBgDGflAQGpGfDHOLJO5vkPb5UTkMxqbFlSEO4m7Ao5ai0PN9mjY81\nhl7FBoZ2rUU2vfaF835WI63XU65KNIBqqRdfDWViQBHysJ0yWK8W5Dg7hPGvM8VK\nG+o9oHdANfJXzRbHlzdx951x9n/p24HLpPFe0dAludT54vppFE9Y5LEpAoGAPHgs\np+5Sv4o2Nj7dZ0mppQr/B7eFIeUWLmPW5LiBOq+Mr9tcOv51pE8seuSodEPW4ArS\n1wWhnbeu9iA61M17IB/S7IQZ/XgRsxtS5otzPsjJ4zRru6UL9dE0K6jOOUSKPOaq\nPiqEMsjI9sJ1kGL+/KEEGBEmH8eY2J18AsDJXaUCgYA4gwqk782JKQhDpvWdU7fm\n8aGOCdDsJJW2FVjgPp+NulHJ2/9uBGbs5g4Uy1I8Y3m92acWC7zEvzonn7HwdKAq\n2cHrVROJqbdo/VFdqHa6tsAJRNYN4gfDwCYAvu8BkucrGBvSezjgkomAV7UgoLMG\nnPM+/3LzD1Qz9myyaUQwow==\n-----END PRIVATE KEY-----\n",
+#   "client_email": "attendance-script@top-sunrise-420513.iam.gserviceaccount.com",
+#   "client_id": "102474679686669311891",
+#   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#   "token_uri": "https://oauth2.googleapis.com/token",
+#   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+#   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/attendance-script%40top-sunrise-420513.iam.gserviceaccount.com",
+#   "universe_domain": "googleapis.com"
+# }
+
+new_creds = {
   "type": "service_account",
-  "project_id": "top-sunrise-420513",
-  "private_key_id": "6792ab2b5f54fe8c496535b1b7ffa985cabfcf06",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC9kOF8i4roSBBC\n+DUcwqZ2Pw8+GLJQT4mkj+7TegPF3LJwutkGHd+mPIkE5Ql9DVTAryMEldGQsAws\nCPYvmmlmycaW78WAXbWNIdZ1tgq4DZo1Rr2+kExFd6bmA9LNfsOaKq4nbkGLxBPQ\nAAc7zJXba4YpzdW9iHo3vDna1GwbAEm7bfSen97MEmv2ZNRLuNcm80sHUsdALMsM\n1YTqEStS6WPZgyUtXpcZfJDn7Ws+0GdU+wEOe3KrmTs4Zp/51XzvXXm/uMVpRWEf\nySNMvLao6uWyDJDUpEP/uhH9x8aLCSy1HBK+EeFEYgd5ICoanb6TCXKilC6KZtoL\n5mpe+ul/AgMBAAECggEAGhp3ul86xwaZWqd0JNw28OR5FFtxPnbdZNA/GlbcayQb\nXEOWe+2kLO98DLT/S/2IdKoJP+njfDGJ04x+Xgq8xd82HfWxdB4zUFZfAkGJk1Oo\nLvrpSPL01cIGtPjEz/BLPhDvf1WC6Bydf9BpLpZa8maJiHskGh/PeJpOOzByHHt9\n86uI5A1Lop2OBieQ2rKhwsPB5NDTjIxjsyR/rISE8dJQchnnzFCRJbbznlA4drOR\nqG+G2I2xqI3RElCzlQZyYAKRGkLOfmgyP3jInm5UI8ALV88/FNPWlKI2jvvxHMat\noRhorsO0kHPPW/4ofmQED4y0AURZcdhG04naOzZjpQKBgQD7/RjJbNPQYno5zb58\nKzHrA8fQtcrSUVwEnoP2aT6sSojHsd3CQMZxSivyI4pVDk4ZOrbP1OCeljnz0Y92\n4PeXHIn8bCxbTJO7+4PHBfoIKsoH7+wYPKRTf9Xi5QHqS3Ghb8tMEt1vOv2JtO4Z\n7aWRtWbErpf+zeTe4B5RRWLcxQKBgQDAlWYv9S9r3u4dxWBKiBw/p0aFfjtItHAB\n6oTSSUYUXL+Ta4+3ewtONgBfwYpslYYU+Iv0ECF7TR1OsDf+tcd9j6A2bWhlJEp7\nuIRjzUPgzLqOpXHuPqUyABMRzVDp6kw0D+nES5FlQLZSZgQQ7Q7Mq6//Eeqp6JHn\ni9BUwSCZcwKBgDGflAQGpGfDHOLJO5vkPb5UTkMxqbFlSEO4m7Ao5ai0PN9mjY81\nhl7FBoZ2rUU2vfaF835WI63XU65KNIBqqRdfDWViQBHysJ0yWK8W5Dg7hPGvM8VK\nG+o9oHdANfJXzRbHlzdx951x9n/p24HLpPFe0dAludT54vppFE9Y5LEpAoGAPHgs\np+5Sv4o2Nj7dZ0mppQr/B7eFIeUWLmPW5LiBOq+Mr9tcOv51pE8seuSodEPW4ArS\n1wWhnbeu9iA61M17IB/S7IQZ/XgRsxtS5otzPsjJ4zRru6UL9dE0K6jOOUSKPOaq\nPiqEMsjI9sJ1kGL+/KEEGBEmH8eY2J18AsDJXaUCgYA4gwqk782JKQhDpvWdU7fm\n8aGOCdDsJJW2FVjgPp+NulHJ2/9uBGbs5g4Uy1I8Y3m92acWC7zEvzonn7HwdKAq\n2cHrVROJqbdo/VFdqHa6tsAJRNYN4gfDwCYAvu8BkucrGBvSezjgkomAV7UgoLMG\nnPM+/3LzD1Qz9myyaUQwow==\n-----END PRIVATE KEY-----\n",
-  "client_email": "attendance-script@top-sunrise-420513.iam.gserviceaccount.com",
-  "client_id": "102474679686669311891",
+  "project_id": "sapient-stacker-408305",
+  "private_key_id": "9dc43a138a50a56907e76bc7b4e8bdcba1aa751a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9kZ24DY8xAa2i\nLWzFaNAUG22B0okNIV9C4HMpWnCJLjA9OnlZTCeDQAbI8/EDhhKcgHlbYNerxld+\ng9DUeNqK0kor/mK1u5KXEi7bbnVQzX3HTbXL2ZWrgDdAOyRRT2WMDgyPLarz5g/M\nkDD6m07Zmv0dL+BSTh5ny3BXN2gnR16SAqGcNtg0pskJLjfbNHH6/47KXHjCQYns\nSgXlnhKpP8HagUj4mZz3N8QJv0/RoWLmzuX+dzQc/yc2wlWJ1hN+j14eSfSKilhR\nzg3csJaFCtEusrIHzV/i55xSkKRA0PCzTEF2895BvmqA3TT9eWYlYQHS+bZJrZNf\nqDTZNYtHAgMBAAECggEAE+iPCnKiGct1/hTh2iQ/y1zLYK7zpbqzfm/ZUvvPMG5M\nB/d0IboAYaWqZhWjDMkFJgUiuZivYw2EHXf1HoXyrabtaIwMDHnpKI8dof3fuYoF\n2Ostryg9XQgsxUTGHk6a+N0g2d3kmOi4ZWC0mXJmEtmsFhHzxQZfOxdVHP5nTyMz\nxNLaDbzBfxP7q8cjV3tAi5Zc24a+Y0AfZFs4IOLDvGVT9vWqxUWSYcjBgj0XMUx6\npW0ShSn//Jjd/baOMar+SDLXgtZIxpa8Q6rrz3YbU1oCxqFMb5s6oHBwtWqdYrmI\nJ1DifnRqJSuAJaFVhhzwmrm+2EI36ys13ewP9gHRAQKBgQD2K4i35Fc9H5DXXKCC\nEV45TkxMpFqv0K6CHGZAuk1tu9m4PmlkQyC8SuidqkKDn3YPJMz27lg+8U3dzcFJ\nMKmL72fXzxr/3nF8Zx9nWBWN5X9pY6mBS+hRYXKQOcOiZsaHBTjPqdNW4rG2Kvmz\ngxYkIyejGpxsQApVceH9jVONFwKBgQDFI3pAlWagfoPwS1h60upBi5zTYt9lL+s1\nRW148MlhaaO30eQNwwxIDJoDJk8eYdcratVNTldNZken/NIvpn7BwxYUIglUNLHl\njDAbquteww2bi2ezOsQ9+oyDAHnI6yQYHgTL/HrEHRQ+Qvz6gYlkox2832d/sgn1\n4Jwj+i+xUQKBgQDGz9gGNFskmVbAKCXVhjNj8tF6YI6BSfd2S3tlsVERW9J1k6pI\neFJ638DIfRZk+Sc/CcijcVFB3F630RHWi3+S7ZIfYDt9BGkBQMPDEgeuZvgk5IGk\nU+rXtuzwgEZ45apWp6f/RzfRBxrhdgneqfL60o2Tk81bO8lcwrHyte4RlwKBgFnb\nQe4OKykcgacVsM7LNFuL93+ioZDNtrghXTSzDBeKv0UaNojPTtnIZKrq20VN83Wm\nzHLgMorlA+ReKK/vg/dtpLKokPgAzNWEgKkbzwzye1FayXm4X5qgiUts/BXImDsl\n86nG+25IkuGORyEnyihE8VkVu2dJD6EzL/h2IScBAoGAAejgHCD8CrIJjZGt9/B5\nqeSxp9SLz0B+HGii82L+HDre67XKQQ5uSDE0IDzzu98dO7qlZ3Wr/khYQK/RN92U\nOD2cFmyCSiK5EEN3JQjaG3ZDkA0Pr0PMYwXwVd3IBt0PCmVbiy5xZiX0Mk16aZXT\nokuhEZgEkohAwDRA0qD0pNQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sapient-stacker-408305@appspot.gserviceaccount.com",
+  "client_id": "100687460747593263164",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/attendance-script%40top-sunrise-420513.iam.gserviceaccount.com",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sapient-stacker-408305%40appspot.gserviceaccount.com",
   "universe_domain": "googleapis.com"
 }
 
 
 
-# credential_path = 'sam_sir_project/app1/credentials.json'
-credential_path = 'credentials.json'
+credential_path = 'sam_sir_project/app1/credentials.json'
 # credentials, project = google.auth.default()
 # credentials = service_account.Credentials.from_service_account_file(
 #     credential_json)
 scopes = ['https://spreadsheets.google.com/feeds',
           'https://www.googleapis.com/auth/drive']
-gc = gspread.service_account(filename='app1/credentials.json', scopes=scopes)
+# gc = gspread.service_account(filename='C:/Users/Hp/Documents/Organized Folders/Automation & APIs/Sam Sir Automation Web/Management_Project/app1/credentials.json', scopes=scopes)
+gc = gspread.service_account_from_dict(new_creds, scopes=scopes)
 
 
 # Create your views here.
