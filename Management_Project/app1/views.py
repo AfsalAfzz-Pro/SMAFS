@@ -446,7 +446,7 @@ def upload_to_cloud_storage(audio_file):
     import uuid
 
     # Create a Cloud Storage client
-    client = storage.Client()
+    client = storage.Client(credentials=new_creds)
 
     # Get the bucket
     # GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
